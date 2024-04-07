@@ -44,22 +44,25 @@ public class FlightTrack {
                     JSONObject aircraft = aircrafts.getJSONObject(i);
                     if (aircraft.has("lat")) { // "lat" anahtarının varlığını kontrol et
                         Ac ac = new Ac();
-                        ac.flight = aircraft.optString("flight", "Bilinmeyen Uçuş");
-                        ac.lat = aircraft.getDouble("lat");
-                        ac.lon = aircraft.getDouble("lon");
-                        ac.alt_geom = aircraft.optInt("alt_geom", -1);
-                        ac.type = aircraft.optString("type","Bilinmeyen Tip");
-                        ac.category = aircraft.optString("category","Bilinmeyen Tip");
-                        ac.sil_type = aircraft.optString("sil_type","Bilinmeyen Tip");
-                        ac.squawk = aircraft.optString("squawk","Bilinmeyen Tip");
+                        ac.setFlight(aircraft.optString("flight", "Bilinmeyen Uçuş"));
+                        ac.setLat(aircraft.getDouble("lat"));
+                        ac.setLon(aircraft.getDouble("lon"));
+                        ac.setAlt_geom(aircraft.optInt("alt_geom", -1));
+                        ac.setType(aircraft.optString("type","Bilinmeyen Tip"));
+                        ac.setCategory(aircraft.optString("category","Bilinmeyen Tip"));
+                        ac.setSil_type(aircraft.optString("sil_type","Bilinmeyen Tip"));
+                        ac.setSquawk(aircraft.optString("squawk","Bilinmeyen Tip"));
                         // Diğer uçak özelliklerini burada da ekleyebilirsiniz
-                        ac.t = aircraft.optString("t","Bilinmeyen Tip");
-                        ac.r = aircraft.optString("r","Bilinmeyen Tip");
-                        ac.hex = aircraft.optString("hex","Bilinmeyen Tip");
-                        ac.gs = aircraft.optInt("gs", -1);
-                        ac.seen = aircraft.optInt("seen", -1);
-                        ac.seen_pos = aircraft.optInt("seen_pos", -1);
+                        ac.setT(aircraft.optString("t","Bilinmeyen Tip"));
+                        ac.setR(aircraft.optString("r","Bilinmeyen Tip"));
+                        ac.setHex(aircraft.optString("hex","Bilinmeyen Tip"));
+                        ac.setGs(aircraft.optInt("gs", -1));
+                        ac.setSeen(aircraft.optInt("seen", -1));
+                        ac.setSeen_pos(aircraft.optInt("seen_pos", -1));
+                        ac.setTrue_heading(aircraft.optInt("true_heading", aircraft.optInt("mag_heading", 0))); // Yön bilgisi
+                        ac.setHeading(aircraft.optInt("track", -1)); // Uçağın yön bilgisi (track) alınıyor
                         aircraftList.add(ac);
+
                     }
                 }
             }
